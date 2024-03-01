@@ -4,6 +4,7 @@ local friend = -1 -- woops, forgot about this
 
 local function CreateMove()
 	local players = entities.FindByClass("CTFPlayer")
+	local pLocal  = entities.GetLocalPlayer()
 	local friendOnly = false
 	
 	for i, player in pairs(players) do -- get players
@@ -13,6 +14,10 @@ local function CreateMove()
 		end
 			
 		if playerlist.GetPriority(player) == friend then -- check if the player is our friend
+			if not player:GetTeamNumber() == pLocal:GetTeamNumber()
+				friendOnly = False
+			end
+			
 			gui.SetValue("Follow bot", "friends only")			
 			friendOnly = true	
 			break	
