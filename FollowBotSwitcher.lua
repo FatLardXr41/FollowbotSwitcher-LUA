@@ -14,8 +14,9 @@ local function CreateMove()
 		end
 			
 		if playerlist.GetPriority(player) == friend then -- check if the player is our friend
-			if not player:GetTeamNumber() == pLocal:GetTeamNumber()
+			if not player:GetTeamNumber() == pLocal:GetTeamNumber() then
 				friendOnly = false
+				break
 			end
 			
 			gui.SetValue("Follow bot", "friends only")			
